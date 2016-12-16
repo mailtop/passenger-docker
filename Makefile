@@ -1,5 +1,5 @@
-NAME = phusion/passenger
-VERSION = 0.9.20
+NAME = mailtop/passenger
+VERSION = 2.4.0
 
 .PHONY: all build_all \
 	build_customizable \
@@ -136,12 +136,12 @@ clean:
 	rm -rf full_image
 
 clean_images:
-	docker rmi phusion/passenger-customizable:latest phusion/passenger-customizable:$(VERSION) || true
-	docker rmi phusion/passenger-ruby20:latest phusion/passenger-ruby20:$(VERSION) || true
-	docker rmi phusion/passenger-ruby21:latest phusion/passenger-ruby21:$(VERSION) || true
-	docker rmi phusion/passenger-ruby22:latest phusion/passenger-ruby22:$(VERSION) || true
-	docker rmi phusion/passenger-ruby23:latest phusion/passenger-ruby23:$(VERSION) || true
-	docker rmi phusion/passenger-ruby24:latest phusion/passenger-ruby24:$(VERSION) || true
-	docker rmi phusion/passenger-jruby91:latest phusion/passenger-jruby91:$(VERSION) || true
-	docker rmi phusion/passenger-nodejs:latest phusion/passenger-nodejs:$(VERSION) || true
-	docker rmi phusion/passenger-full:latest phusion/passenger-full:$(VERSION) || true
+	docker rmi mailtop/passenger-customizable:latest mailtop/passenger-customizable:$(VERSION) || true
+	docker rmi mailtop/passenger-ruby20:latest mailtop/passenger-ruby20:$(VERSION) || true
+	docker rmi mailtop/passenger-ruby21:latest mailtop/passenger-ruby21:$(VERSION) || true
+	docker rmi mailtop/passenger-ruby22:latest mailtop/passenger-ruby22:$(VERSION) || true
+	docker rmi mailtop/passenger-ruby23:latest mailtop/passenger-ruby23:$(VERSION) || true
+	docker rmi mailtop/passenger-ruby24:latest mailtop/passenger-ruby24:$(VERSION) || true
+	docker rmi mailtop/passenger-jruby91:latest mailtop/passenger-jruby91:$(VERSION) || true
+	docker rmi mailtop/passenger-nodejs:latest mailtop/passenger-nodejs:$(VERSION) || true
+	docker rmi mailtop/passenger-full:latest mailtop/passenger-full:$(VERSION) || true
