@@ -99,7 +99,7 @@ Language support:
    * JRuby is installed from source, but we register an APT entry for it.
    * JRuby uses OpenJDK 8.
  * Python 2.7 and Python 3.4.
- * Node.js 4.2.6.
+ * Node.js 7.10.0.
  * A build system, git, and development headers for many popular libraries, so that the most popular Ruby, Python and Node.js native extensions can be compiled without problems.
 
 Web server and application server:
@@ -132,11 +132,12 @@ Passenger-docker consists of several images, each one tailor made for a specific
  * `phusion/passenger-ruby21` - Ruby 2.1.
  * `phusion/passenger-ruby22` - Ruby 2.2.
  * `phusion/passenger-ruby23` - Ruby 2.3.
+ * `phusion/passenger-ruby24` - Ruby 2.4.
  * `phusion/passenger-jruby91` - JRuby 9.1.2.0.
 
 **Node.js and Meteor images**
 
- * `phusion/passenger-nodejs` - Node.js 4.2.6.
+ * `phusion/passenger-nodejs` - Node.js 7.10.0.
 
 **Other images**
 
@@ -174,6 +175,7 @@ So put the following in your Dockerfile:
     #FROM phusion/passenger-ruby21:<VERSION>
     #FROM phusion/passenger-ruby22:<VERSION>
     #FROM phusion/passenger-ruby23:<VERSION>
+    #FROM phusion/passenger-ruby24:<VERSION>
     #FROM phusion/passenger-jruby91:<VERSION>
     #FROM phusion/passenger-nodejs:<VERSION>
     #FROM phusion/passenger-customizable:<VERSION>
@@ -187,17 +189,17 @@ So put the following in your Dockerfile:
     # If you're using the 'customizable' variant, you need to explicitly opt-in
     # for features. Uncomment the features you want:
     #
-    #   Build system and git.
-    #RUN /pd_build/utilities.sh
-    #   Ruby support.
+    #   Ruby support (packaged with Node support as well).
     #RUN /pd_build/ruby-2.0.*.sh
     #RUN /pd_build/ruby-2.1.*.sh
     #RUN /pd_build/ruby-2.2.*.sh
     #RUN /pd_build/ruby-2.3.*.sh
+    #RUN /pd_build/ruby-2.4.*.sh
     #RUN /pd_build/jruby-9.1.*.sh
     #   Python support.
     #RUN /pd_build/python.sh
-    #   Node.js and Meteor support.
+    #   Node.js and Meteor standalone support.
+    #   (not needed if you already have the above Ruby support)
     #RUN /pd_build/nodejs.sh
 
     # ...put your own build instructions here...
@@ -244,6 +246,8 @@ You can add a virtual host entry (`server` block) by placing a .conf file in the
         passenger_user app;
 
         # If this is a Ruby app, specify a Ruby version:
+        passenger_ruby /usr/bin/ruby2.4;
+        # For Ruby 2.3
         passenger_ruby /usr/bin/ruby2.3;
         # For Ruby 2.2
         passenger_ruby /usr/bin/ruby2.2;
@@ -821,6 +825,6 @@ Because we need to support Ruby versions not available from Ubuntu's APT reposit
  * Having problems? Please post a message at [the discussion forum](https://groups.google.com/d/forum/passenger-docker).
  * Looking for a minimal image containing only a correct base system? Take a look at [baseimage-docker](https://github.com/phusion/baseimage-docker).
 
-[<img src="http://www.phusion.nl/assets/logo.png">](http://www.phusion.nl/)
+[<img src="https://www.phusion.nl/images/PhusionLogo-Blue.png">](http://www.phusion.nl/)
 
 Please enjoy passenger-docker, a product by [Phusion](http://www.phusion.nl/). :-)
