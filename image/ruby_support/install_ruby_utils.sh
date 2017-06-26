@@ -13,15 +13,18 @@ if ! [[ -e /tmp/ruby_native_libs_installed ]]; then
 	## For nokogiri.
 	run minimal_apt_get_install libxml2-dev libxslt1-dev
 	## For mysql and mysql2.
-	run minimal_apt_get_install libmysqlclient-dev
+	# run minimal_apt_get_install libmysqlclient-dev
 	## For sqlite3.
-	run minimal_apt_get_install libsqlite3-dev
+	# run minimal_apt_get_install libsqlite3-dev
 	## For postgres and pg.
 	run minimal_apt_get_install libpq-dev
 	## For curb.
 	run minimal_apt_get_install libcurl4-openssl-dev
 	## For all kinds of stuff.
 	run minimal_apt_get_install zlib1g-dev
+	run minimal_apt_get_install graphviz
+	run minimal_apt_get_install libgmp3-dev
+	run minimal_apt_get_install tzdata
 
 	touch /tmp/ruby_native_libs_installed
 fi
