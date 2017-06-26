@@ -136,12 +136,12 @@ clean:
 	rm -rf full_image
 
 clean_images:
-	docker rmi mailtop/passenger-customizable:latest mailtop/passenger-customizable:$(VERSION) || true
-	docker rmi mailtop/passenger-ruby20:latest mailtop/passenger-ruby20:$(VERSION) || true
-	docker rmi mailtop/passenger-ruby21:latest mailtop/passenger-ruby21:$(VERSION) || true
-	docker rmi mailtop/passenger-ruby22:latest mailtop/passenger-ruby22:$(VERSION) || true
-	docker rmi mailtop/passenger-ruby23:latest mailtop/passenger-ruby23:$(VERSION) || true
-	docker rmi mailtop/passenger-ruby24:latest mailtop/passenger-ruby24:$(VERSION) || true
-	docker rmi mailtop/passenger-jruby91:latest mailtop/passenger-jruby91:$(VERSION) || true
-	docker rmi mailtop/passenger-nodejs:latest mailtop/passenger-nodejs:$(VERSION) || true
-	docker rmi mailtop/passenger-full:latest mailtop/passenger-full:$(VERSION) || true
+	docker rmi $(NAME)-customizable:latest $(NAME)-customizable:$(VERSION) || true
+	docker rmi $(NAME)-ruby20:latest $(NAME)-ruby20:$(VERSION) || true
+	docker rmi $(NAME)-ruby21:latest $(NAME)-ruby21:$(VERSION) || true
+	docker rmi $(NAME)-ruby22:latest $(NAME)-ruby22:$(VERSION) || true
+	docker rmi $(NAME)-ruby23:latest $(NAME)-ruby23:$(VERSION) || true
+	docker rmi $(NAME)-ruby24:latest $(NAME)-ruby24:$(VERSION) || true
+	docker rmi $(NAME)-jruby91:latest $(NAME)-jruby91:$(VERSION) || true
+	docker rmi $(NAME)-nodejs:latest $(NAME)-nodejs:$(VERSION) || true
+	docker rmi $(NAME)-full:latest $(NAME)-full:$(VERSION) || true
