@@ -1,5 +1,5 @@
 FROM phusion/baseimage:0.9.22
-MAINTAINER Phusion <info@phusion.nl>
+MAINTAINER Rodrigo de Avila <rodrigo.avila@mailtop.com.br>
 
 ADD . /pd_build
 RUN /pd_build/install.sh
