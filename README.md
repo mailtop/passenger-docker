@@ -93,13 +93,13 @@ Basics (learn more at [baseimage-docker](http://phusion.github.io/baseimage-dock
 
 Language support:
 
- * Ruby 2.0.0, 2.1.9, 2.2.8, 2.3.5 and 2.4.2; JRuby 9.1.2.0.
+ * Ruby 2.0.0, 2.1.9, 2.2.9, 2.3.6, 2.4.3 and 2.5.0; JRuby 9.1.2.0.
    * RVM is used to manage Ruby versions. [Why RVM?](#why_rvm)
-   * 2.3.5 is configured as the default.
+   * 2.3.6 is configured as the default.
    * JRuby is installed from source, but we register an APT entry for it.
    * JRuby uses OpenJDK 8.
  * Python 2.7 and Python 3.4.
- * Node.js 7.10.0.
+ * Node.js 8.9.4.
  * A build system, git, and development headers for many popular libraries, so that the most popular Ruby, Python and Node.js native extensions can be compiled without problems.
 
 Web server and application server:
@@ -133,11 +133,12 @@ Passenger-docker consists of several images, each one tailor made for a specific
  * `phusion/passenger-ruby22` - Ruby 2.2.
  * `phusion/passenger-ruby23` - Ruby 2.3.
  * `phusion/passenger-ruby24` - Ruby 2.4.
+ * `phusion/passenger-ruby25` - Ruby 2.5.
  * `phusion/passenger-jruby91` - JRuby 9.1.2.0.
 
 **Node.js and Meteor images**
 
- * `phusion/passenger-nodejs` - Node.js 7.10.0.
+ * `phusion/passenger-nodejs` - Node.js 8.9.4.
 
 **Other images**
 
@@ -176,6 +177,7 @@ So put the following in your Dockerfile:
     #FROM phusion/passenger-ruby22:<VERSION>
     #FROM phusion/passenger-ruby23:<VERSION>
     #FROM phusion/passenger-ruby24:<VERSION>
+    #FROM phusion/passenger-ruby25:<VERSION>
     #FROM phusion/passenger-jruby91:<VERSION>
     #FROM phusion/passenger-nodejs:<VERSION>
     #FROM phusion/passenger-customizable:<VERSION>
@@ -187,12 +189,12 @@ So put the following in your Dockerfile:
     CMD ["/sbin/my_init"]
 
     # If you're using the 'customizable' variant, you need to explicitly opt-in
-    # for features. 
+    # for features.
     #
-    # N.B. these images are based on https://github.com/phusion/baseimage-docker, 
-    # so anything it provides is also automatically on board in the images below 
-    # (e.g. older versions of Ruby, Node, Python).  
-    # 
+    # N.B. these images are based on https://github.com/phusion/baseimage-docker,
+    # so anything it provides is also automatically on board in the images below
+    # (e.g. older versions of Ruby, Node, Python).
+    #
     # Uncomment the features you want:
     #
     #   Ruby support
@@ -219,6 +221,8 @@ So put the following in your Dockerfile:
 The image has an `app` user with UID 9999 and home directory `/home/app`. Your application is supposed to run as this user. Even though Docker itself provides some isolation from the host OS, running applications without root privileges is good security practice.
 
 Your application should be placed inside /home/app.
+
+Note: when copying your application, make sure to set the ownership of the application directory to `app` by calling `COPY --chown=app:app /local/path/of/your/app /home/app/webapp`
 
 <a name="nginx_passenger"></a>
 ### Using Nginx and Passenger
@@ -266,6 +270,7 @@ You can add a virtual host entry (`server` block) by placing a .conf file in the
     ADD webapp.conf /etc/nginx/sites-enabled/webapp.conf
     RUN mkdir /home/app/webapp
     RUN ...commands to place your web app in /home/app/webapp...
+    # COPY --chown=app:app /local/path/of/your/app /home/app/webapp # This copies your web app with the correct ownership.
 
 <a name="configuring_nginx"></a>
 #### Configuring Nginx
@@ -405,12 +410,12 @@ The default Ruby (what the `/usr/bin/ruby` command executes) is the latest Ruby 
     RUN bash -lc 'rvm --default use ruby-2.0.0'
     # Ruby 2.1.9
     RUN bash -lc 'rvm --default use ruby-2.1.9'
-    # Ruby 2.2.8
-    RUN bash -lc 'rvm --default use ruby-2.2.8'
-    # Ruby 2.3.5
-    RUN bash -lc 'rvm --default use ruby-2.3.5'
-    # Ruby 2.4.2
-    RUN bash -lc 'rvm --default use ruby-2.4.2'
+    # Ruby 2.2.9
+    RUN bash -lc 'rvm --default use ruby-2.2.9'
+    # Ruby 2.3.6
+    RUN bash -lc 'rvm --default use ruby-2.3.6'
+    # Ruby 2.4.3
+    RUN bash -lc 'rvm --default use ruby-2.4.3'
     # JRuby 9.1.2.0
     RUN bash -lc 'rvm --default use jruby-9.1.2.0'
 
@@ -421,18 +426,18 @@ Learn more: [RVM: Setting the default Ruby](https://rvm.io/rubies/default).
 
 You can run any command with a specific Ruby version by prefixing it with `rvm-exec <IDENTIFIER>`. For example:
 
-    $ rvm-exec 2.3.5 ruby -v
-    ruby 2.3.5
-    $ rvm-exec 2.2.8 ruby -v
-    ruby 2.2.8
+    $ rvm-exec 2.3.6 ruby -v
+    ruby 2.3.6
+    $ rvm-exec 2.2.9 ruby -v
+    ruby 2.2.9
 
 More examples, but with Bundler instead:
 
-    # This runs 'bundle install' using Ruby 2.3.5
-    rvm-exec 2.3.5 bundle install
+    # This runs 'bundle install' using Ruby 2.3.6
+    rvm-exec 2.3.6 bundle install
 
-    # This runs 'bundle install' using Ruby 2.2.8
-    rvm-exec 2.2.8 bundle install
+    # This runs 'bundle install' using Ruby 2.2.9
+    rvm-exec 2.2.9 bundle install
 
 <a name="default_ruby_wrapper_scripts"></a>
 #### Default wrapper scripts
@@ -777,6 +782,7 @@ Build one of the images:
     make build_ruby22
     make build_ruby23
     make build_ruby24
+    make build_ruby25
     make build_jruby91
     make build_nodejs
     make build_customizable
@@ -831,6 +837,6 @@ Because we need to support Ruby versions not available from Ubuntu's APT reposit
  * Having problems? Please post a message at [the discussion forum](https://groups.google.com/d/forum/passenger-docker).
  * Looking for a minimal image containing only a correct base system? Take a look at [baseimage-docker](https://github.com/phusion/baseimage-docker).
 
-[<img src="https://www.phusion.nl/images/PhusionLogo-Blue.png">](http://www.phusion.nl/)
+[<img src="https://www.phusion.nl/images/mark_logotype.svg">](http://www.phusion.nl/)
 
 Please enjoy passenger-docker, a product by [Phusion](http://www.phusion.nl/). :-)

@@ -1,3 +1,19 @@
+## 0.9.29 (release date: 2018-02-27)
+
+ * Upgraded to Phusion Passenger 5.2.1 (from 5.2.0).
+ * Hints about app permission in container. Thanks to contribution by skunkworker (PR 206)
+ * Thanks to contribution by ledermann (PR 204):
+   - Added build for Ruby 2.5 (2.5.0). 
+   - Upgraded to Ruby 2.4.3 (from 2.4.2).
+   - Upgraded to Ruby 2.3.6 (from 2.3.5).
+   - Upgraded to Ruby 2.2.9 (from 2.2.8).
+ * Upgraded to Node.js 8.9.4 LTS (from 7.10.0, sticking to LTS releases from now).
+ * Updated Makefile to also push latest tag. Closes GH-197.
+
+## 0.9.28 (release date: 2018-01-29)
+
+ * Upgraded to Phusion Passenger 5.2.0 (from 5.1.12).
+
 ## 0.9.27 (release date: 2017-11-23)
 
  * Upgraded to Phusion Passenger 5.1.12 (from 5.1.11).
