@@ -25,6 +25,7 @@ if ! [[ -e /tmp/ruby_native_libs_installed ]]; then
 	run minimal_apt_get_install graphviz
 	run minimal_apt_get_install libgmp3-dev
 	run minimal_apt_get_install tzdata
+	run minimal_apt_get_install libjemalloc-dev
 
 	touch /tmp/ruby_native_libs_installed
 fi
