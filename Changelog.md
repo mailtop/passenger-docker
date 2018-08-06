@@ -1,3 +1,20 @@
+## 0.9.35 (release date: 2018-08-01)
+
+ * Upgraded to Phusion Passenger 5.3.4 (from 5.3.3).
+
+## 0.9.34 (release date: 2018-06-26)
+
+ * Upgraded to Phusion Passenger 5.3.3 (from 5.3.2).
+
+## 0.9.33 (release date: 2018-06-12)
+
+ * Upgraded to Phusion Passenger 5.3.2 (from 5.3.1).
+ * Upgraded to baseimage-docker 0.10.1 (from 0.9.22).
+
+## 0.9.32 (release date: 2018-05-14)
+
+ * Upgraded to Phusion Passenger 5.3.1 (from 5.3.0).
+
 ## 0.9.31 (release date: 2018-05-09)
 
  * Upgraded to Phusion Passenger 5.3.0 (from 5.2.3).

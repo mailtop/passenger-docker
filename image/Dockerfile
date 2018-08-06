@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.22
+FROM phusion/baseimage:0.10.1
 LABEL maintainer="Rodrigo de Avila <rodrigo.avila@mailtop.com.br>"
 LABEL versao="2.4.4.1"
 
