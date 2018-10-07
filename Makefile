@@ -1,5 +1,5 @@
 NAME = mailtop/passenger
-VERSION = 2.4.4.1
+VERSION = 2.5.1.1
 # Extra flags for docker build, usable via environment variable.
 # Example: `export EXTRA_BUILD_FLAGS=--no-cache; make build_all`
 EXTRA_BUILD_FLAGS?=
@@ -71,7 +71,7 @@ build_ruby25:
 	cp -pR image ruby25_image
 	echo ruby25=1 >> ruby25_image/buildconfig
 	echo final=1 >> ruby25_image/buildconfig
-	docker build $(EXTRA_BUILD_FLAGS) -t $(NAME)-ruby25:$(VERSION) --rm ruby25_image --no-cache
+	docker build $(EXTRA_BUILD_FLAGS) -t $(NAME):$(VERSION) --rm --no-cache ruby25_image
 
 build_jruby91:
 	rm -rf jruby91_image
