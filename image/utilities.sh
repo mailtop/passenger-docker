@@ -6,6 +6,8 @@ source /pd_build/buildconfig
 run minimal_apt_get_install build-essential
 ## Bundler has to be able to pull dependencies from git.
 run minimal_apt_get_install git
+# Other dependencies
+run minimal_apt_get_install imagemagick libcurl4-openssl-dev
 
 ## Install wkhtmltopdf from Github
 run curl -fsSL https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz -o wkhtmltox-0.12.4_linux-generic-amd64.tar.xz
