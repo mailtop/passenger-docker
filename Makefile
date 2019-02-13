@@ -53,13 +53,6 @@ build_ruby26:
 	echo final=1 >> ruby26_image/buildconfig
 	docker build $(EXTRA_BUILD_FLAGS) -t $(NAME):$(VERSION) --rm --no-cache ruby26_image
 
-build_ruby26:
-	rm -rf ruby26_image
-	cp -pR image ruby26_image
-	echo ruby26=1 >> ruby26_image/buildconfig
-	echo final=1 >> ruby26_image/buildconfig
-	docker build $(EXTRA_BUILD_FLAGS) -t $(NAME)-ruby26:$(VERSION) --rm ruby26_image --no-cache
-
 build_jruby92:
 	rm -rf jruby92_image
 	cp -pR image jruby92_image
