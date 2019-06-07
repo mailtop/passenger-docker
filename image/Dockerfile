@@ -1,6 +1,6 @@
 FROM phusion/baseimage:0.11
 LABEL maintainer="Rodrigo de Avila <rodrigo.avila@mailtop.com.br>"
-LABEL versao="2.6.2"
+LABEL versao="2.6.3"
 
 ADD . /pd_build
 RUN /pd_build/install.sh
