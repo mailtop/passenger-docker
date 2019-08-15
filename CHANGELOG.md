@@ -1,3 +1,9 @@
+## 1.0.6 (release date: 2019-07-02)
+ * Upgraded to Ruby 2.4.6.
+ * Upgraded to Ruby 2.6.3.
+ * reopen passenger logs in logrotate script. Closes GH-255.
+ * Defers installing bundler to rvm. Closes GH-260.
+
 ## 1.0.5 (release date: 2019-03-15)
  * Upgraded to Ruby 2.5.5.
 
