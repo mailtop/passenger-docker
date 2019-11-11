@@ -2,6 +2,11 @@ FROM phusion/baseimage:0.11
 LABEL maintainer="Rodrigo de Avila <rodrigo.avila@mailtop.com.br>"
 LABEL versao="2.6.5"
 
+RUN apt-get -y update && \
+    apt-get -y upgrade && \
+    apt-get -y dist-upgrade && \
+    rm -rf /var/lib/apt/lists/*
+
 ADD . /pd_build
 RUN /pd_build/install.sh
 RUN gem update --system && \
