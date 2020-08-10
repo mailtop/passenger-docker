@@ -1,6 +1,6 @@
 FROM phusion/baseimage:0.11
 LABEL maintainer="Rodrigo de Avila <rodrigo.avila@mailtop.com.br>"
-LABEL versao="2.6.6.1"
+LABEL versao="2.6.6.2"
 
 RUN apt-get -y update && \
     apt-get -y upgrade && \

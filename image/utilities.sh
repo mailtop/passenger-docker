@@ -14,3 +14,5 @@ run curl -fsSL https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12
 run dpkg -i wk.deb
 run rm -rf wk.deb
 
+run curl -sL https://deb.nodesource.com/setup_10.x | bash -
+minimal_apt_get_install nodejs
