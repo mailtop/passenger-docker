@@ -1,6 +1,6 @@
-FROM phusion/baseimage:0.11
-LABEL maintainer="Rodrigo de Avila <rodrigo.avila@mailtop.com.br>"
-LABEL versao="2.7.1-1"
+FROM phusion/baseimage:master
+MAINTAINER Joao Scotto <joao.scotto@mailtop.com.br>
+LABEL versao="2.7.1-2"
 
 RUN apt-get -y update && \
     apt-get -y upgrade && \

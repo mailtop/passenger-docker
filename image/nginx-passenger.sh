@@ -7,12 +7,12 @@ header "Installing Phusion Passenger..."
 
 ## Phusion Passenger requires Ruby. Install it through RVM, not APT,
 ## so that the -customizable variant cannot end up having Ruby installed
-## from APT and Ruby installed from RVM.
+## from both APT and RVM.
 if [[ ! -e /usr/bin/ruby ]]; then
 	run /pd_build/ruby_support/prepare.sh
-	run /usr/local/rvm/bin/rvm install ruby-2.7.1
+	run /usr/local/rvm/bin/rvm install ruby-3.0.0
 	# Make passenger_system_ruby work.
-	run create_rvm_wrapper_script ruby2.7 ruby-2.7.1 ruby
+	run create_rvm_wrapper_script ruby3.0 ruby-3.0.0 ruby
 	run /pd_build/ruby_support/finalize.sh
 fi
 
@@ -39,6 +39,10 @@ run sed -i 's|invoke-rc.d nginx rotate|sv 1 nginx|' /etc/logrotate.d/nginx
 run sed -i -e '/sv 1 nginx.*/a\' -e '		passenger-config reopen-logs >/dev/null 2>&1' /etc/logrotate.d/nginx
 
 ## Precompile Ruby extensions.
+if [[ -e /usr/bin/ruby3.0 ]]; then
+	run ruby3.0 -S passenger-config build-native-support
+	run setuser app ruby3.0 -S passenger-config build-native-support
+fi
 if [[ -e /usr/bin/ruby2.7 ]]; then
 	run ruby2.7 -S passenger-config build-native-support
 	run setuser app ruby2.7 -S passenger-config build-native-support
@@ -54,10 +58,6 @@ fi
 if [[ -e /usr/bin/ruby2.4 ]]; then
 	run ruby2.4 -S passenger-config build-native-support
 	run setuser app ruby2.4 -S passenger-config build-native-support
-fi
-if [[ -e /usr/bin/ruby2.3 ]]; then
-	run ruby2.3 -S passenger-config build-native-support
-	run setuser app ruby2.3 -S passenger-config build-native-support
 fi
 if [[ -e /usr/bin/jruby ]]; then
 	run jruby --dev -S passenger-config build-native-support
